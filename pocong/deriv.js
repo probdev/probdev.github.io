@@ -218,12 +218,12 @@ ws.onmessage = function(msg) {
 			document.querySelector("#profit").innerText = "" + hitungloss + "";
 			if (hitungloss >= target_profit){
 				document.querySelector("#jalan").innerText = "2";
-				document.querySelector("#status_bot").innerText = "target tercapai";
+				document.querySelector("#status_bot").innerText = "BOT STOP";
 				console.log('target tercapai');
 			}
 			if (hitungloss <= target_loss){
 				document.querySelector("#jalan").innerText = "2";
-				document.querySelector("#status_bot").innerText = "kena SL bossssssssssssss";
+				document.querySelector("#status_bot").innerText = "BOT STOP";
 				console.log('kena SL bossssssssssssss');
 			}
 			
