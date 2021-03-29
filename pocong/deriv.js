@@ -32,6 +32,7 @@ var harga_dua = 0;
 var harga_tiga = 0;
 var counter_tick = 0;
 var eksekusi = "PUT";
+var aut = 0;
 //WebSocket.close();
 var ws = new WebSocket('wss://ws.binaryws.com/websockets/v3?app_id=21317');
 
@@ -52,6 +53,10 @@ ws.onmessage = function(msg) {
 	if (msg_type === "balance") {
 		console.log('balance: %o', data.balance.balance);
 		saldo = data.balance.balance;
+		if (aut === 1){
+		document.querySelector("#balance").innerText = "" + data.balance.balance + "";
+		aut = 0;
+		}
 		
 	}
 	if (msg_type === "ping") {
@@ -270,7 +275,8 @@ document.getElementById("myBtn1").addEventListener("click", function MyFunction2
                //ws.send(JSON.stringify({"proposal_open_contract":1, "contract_id": "" + contract_trade + ""}));
 			   token_api = document.querySelector("#token").value;
 			   ws.send(JSON.stringify({authorize:'' + token_api + ''}));
-			   document.querySelector("#balance").innerText = "" + saldoasli + "";
+			   aut = 1;
+			   //document.querySelector("#balance").innerText = "" + saldoasli + "";
 			   //ws.send(JSON.stringify({"buy":1,"parameters":{"amount":"" + lot + "","basis":"stake","contract_type":"PUT","currency":"USD","duration":1,"duration_unit":"t","symbol":"1HZ25V"},"price":"" + lot + ""}));
 			   
 });
