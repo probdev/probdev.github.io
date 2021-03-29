@@ -31,7 +31,7 @@ var harga_satu = 0;
 var harga_dua = 0;
 var harga_tiga = 0;
 var counter_tick = 0;
-var eksekusi = "CALL";
+var eksekusi = "PUT";
 //WebSocket.close();
 var ws = new WebSocket('wss://ws.binaryws.com/websockets/v3?app_id=21317');
 
