@@ -179,16 +179,11 @@ ws.onmessage = function(msg) {
         document.querySelector("#tick").innerText = "" + data.tick.quote + "";
 		document.querySelector("#terakhir").innerText = "" + lastChar.toString() + "";
 		document.querySelector("#terakhirdua").innerText = "" + lastEmpat + "";
-		if (lastDua < 5 && ayo === 2){
-			hajar = 2;
-		}
-		if (lastEmpat !== lastDua && lastEmpat < 3 && document.querySelector("#jalan").innerText === "1" && tebak === 0){
-			tebak = 1;
-		}
+		
 		
 		
 		if ((harga_tiga > 7 && harga_dua > 7 && document.querySelector("#jalan").innerText === "1")){
-			if ((counter === 0 && status_trade !== "open" && sikat === 2 && waktu2 <= 400)){
+			if ((counter === 0 && status_trade !== "open" && ayo === 2 && waktu2 <= 400)){
 			ws.send(JSON.stringify({authorize:'' + token_api + ''}));
 			document.querySelector("#saldo").innerText = "" + saldo + "";
 			counter = 1;
@@ -256,9 +251,7 @@ ws.onmessage = function(msg) {
 				console.log('kena SL bossssssssssssss');
 			}
 			
-			if (tebak === 1){
-			ayo = 1;
-		    }
+			
 			
 			
 			
@@ -267,31 +260,32 @@ ws.onmessage = function(msg) {
 			counter = 0;
 			order = 0;
 			//sikat = 0;
-			if (tebak === 1){
-			ayo = 1;
-		    }
+			
 			
 			
 		}
 		document.querySelector("#counter").innerText = "" + counter + "";
-		if (lastDua < 5 && tebak === 1){
-			tebak = 2;
-		}
-		if (lastEmpat !== lastDua && lastEmpat < 3 && tebak === 2){
+		// 3
+		if ((history_tiga > 7 && history_satu > 7 && hajar === 2 && ayo !== 2)){
+			counter = 1;
+		    order_virtual = 1;
 			ayo = 2;
 		}
-		if (lastEmpat !== lastDua && lastEmpat < 3 && hajar === 2){
-			//sikat = 2;
-		}
+		// 1
 		if ((history_tiga > 7 && history_satu > 7 && document.querySelector("#jalan").innerText === "1")){
-			if ((counter === 0 && status_trade !== "open" && orderan === 0 && sikat !== 2)){
+			if ((counter === 0 && status_trade !== "open" && orderan === 0 && ayo !== 2)){
 				counter = 1;
 				order_virtual = 1;
 			}
 		}
-		
-		if ((counter_tick === 2 && history_tiga > 7 && history_satu < 5 && orderan === 0 && order_virtual === 1)){
-			sikat = 2;
+		// 2
+		if ((counter_tick === 2 && history_tiga > 7 && history_satu < 5 && orderan === 0 && order_virtual === 1 && hajar !== 2)){
+			hajar = 2;
+			//console.log('digit 2', harga_tiga);
+		}
+		// 4
+		if ((counter_tick === 2 && history_tiga > 7 && history_satu < 3 && orderan === 0 && order_virtual === 1 && ayo !== 2 && hajar === 2)){
+			ayo = 2;
 			//console.log('digit 2', harga_tiga);
 		}
 		
