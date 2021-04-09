@@ -183,6 +183,10 @@ ws.onmessage = function(msg) {
 		document.querySelector("#terakhir").innerText = "" + lastChar.toString() + "";
 		document.querySelector("#terakhirdua").innerText = "" + lastEmpat + "";
 		
+		if ((ayo === 2 && history_tiga === angka_penentu && history_satu < 5)){
+			ayo = 0;
+		}
+		
 		if ((history_satu === angka_penentu && angka_penentu > 0 && angka_penentu > 7 && document.querySelector("#jalan").innerText === "1")){
 			if ((counter === 0 && status_trade !== "open" && sikat === 2)){
 			tebak = 2;
@@ -292,12 +296,8 @@ ws.onmessage = function(msg) {
 		if ((tebak === 2 && sikat === 2 && history_tiga === angka_penentu && history_satu > 7)){
 			ayo = 2;
 		}
-		if ((tebak === 2 && history_tiga === angka_penentu && history_satu < 5)){
-			tebak = 0;
-		}
-		if ((ayo === 2 && history_tiga === angka_penentu && history_satu < 5)){
-			ayo = 0;
-		}
+		
+		
 		
     }
 	
