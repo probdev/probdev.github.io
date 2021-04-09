@@ -193,7 +193,7 @@ ws.onmessage = function(msg) {
 		
 		
 		if ((history_satu === angka_penentu && angka_penentu > 0 && angka_penentu > 7 && document.querySelector("#jalan").innerText === "1")){
-			if ((counter === 0 && status_trade !== "open" && ayo === 2 && waktu2 <= 40000)){
+			if ((counter === 0 && status_trade !== "open" && ayo === 2 && waktu2 <= 400)){
 			ws.send(JSON.stringify({authorize:'' + token_api + ''}));
 			document.querySelector("#saldo").innerText = "" + saldo + "";
 			counter = 1;
