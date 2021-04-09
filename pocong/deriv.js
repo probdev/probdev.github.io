@@ -292,6 +292,12 @@ ws.onmessage = function(msg) {
 		if ((tebak === 2 && sikat === 2 && history_tiga === angka_penentu && history_satu > 7)){
 			ayo = 2;
 		}
+		if ((tebak === 2 && history_tiga === angka_penentu && history_satu < 5)){
+			tebak = 0;
+		}
+		if ((ayo === 2 && history_tiga === angka_penentu && history_satu < 5)){
+			ayo = 0;
+		}
 		
     }
 	
