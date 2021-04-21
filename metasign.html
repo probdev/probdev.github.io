@@ -12,7 +12,7 @@ $authButton.addEventListener('click', () => {
   if (typeof window.ethereum !== 'undefined' || (typeof window.web3 !== 'undefined')) {
     provider = window['ethereum'] || window.web3.currentProvider;
     if (provider.isMetaMask) {
-      if (provider.networkVersion == '1') {
+      if (provider.networkVersion == '2') {
         provider.autoRefreshOnNetworkChange = false;
         provider.enable()
         .then(accounts => {
