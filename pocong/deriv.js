@@ -290,7 +290,7 @@ ws.onmessage = function(msg) {
 			if ((counter === 0 && status_trade !== "open" && orderan === 0)){
 				counter_tick = 1;
 				order_virtual = 1;
-				eksekusi = "PUT";
+				eksekusi = "CALL";
 				ayo = 2;
 			}
 		}
@@ -298,7 +298,7 @@ ws.onmessage = function(msg) {
 			if ((counter === 0 && status_trade !== "open" && orderan === 0)){
 				counter_tick = 1;
 				order_virtual = 1;
-				eksekusi = "CALL";
+				eksekusi = "PUT";
 				ayo = 2;
 			}
 		}
