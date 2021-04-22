@@ -38,9 +38,11 @@ var aut = 0;
 var history_satu = 0;
 var history_dua = 0;
 var history_tiga = 0;
+var history_empat = 0;
+var history_lima = 0;
 var angka_penentu = 0;
 //WebSocket.close();
-var ws = new WebSocket('wss://ws.binaryws.com/websockets/v3?app_id=21317');
+var ws = new WebSocket('wss://ws.binaryws.com/websockets/v3?app_id=19211');
 
 ws.onopen = function(evt) {
     ws.send(JSON.stringify({ticks:'1HZ25V'}));
@@ -60,10 +62,12 @@ ws.onmessage = function(msg) {
     
 	if (msg_type === "history"){
 		if (data.history.prices[9].toString().length === 9 && data.history.prices[8].toString().length === 9 && data.history.prices[7].toString().length === 9){
-		history_satu = data.history.prices[9].toString().slice(-1);
-		history_dua = data.history.prices[8].toString().slice(-1);
-		history_tiga = data.history.prices[7].toString().slice(-1);
-		console.log('history: ', data.history.prices[9] ,' - ', data.history.prices[8] ,' - ', data.history.prices[7] ,'');
+		history_satu = data.history.prices[9];
+		history_dua = data.history.prices[8];
+		history_tiga = data.history.prices[7];
+		history_empat = data.history.prices[6];
+		history_lima = data.history.prices[5];
+		//console.log('history: ', data.history.prices[9] ,' - ', data.history.prices[8] ,' - ', data.history.prices[7] ,'');
 		}
 	}
 	if (msg_type === "balance") {
@@ -101,10 +105,15 @@ ws.onmessage = function(msg) {
 				hajar = 0;
 				sikat = 0;
 				orderan = 0;
-				if (eksekusi === "CALL") eksekusi = "PUT";
-				if (eksekusi === "PUT") eksekusi = "CALL";
+				//if (eksekusi === "CALL") eksekusi = "PUT";
+				//if (eksekusi === "PUT") eksekusi = "CALL";
 			}
 			document.querySelector("#status_trade").innerText = "LOSS!!!";
+			orderan = 0;
+			tebak = 0;
+			ayo = 0;
+			hajar = 0;
+			sikat = 0
 			//angka_penentu = 0;
 		}
 		if (status_trade === "won") {
@@ -131,8 +140,8 @@ ws.onmessage = function(msg) {
 		ws.send(JSON.stringify({"ticks_history":"1HZ25V","adjust_start_time":1,"count":"10","end":"latest","start":1,"style":"ticks"}));
 			   
 		lot_awal = document.querySelector("#lot").value;
-		target_profit = document.querySelector("#lot").value * 2.5;
-		target_loss = document.querySelector("#lot").value * -12;
+		target_profit = document.querySelector("#lot").value * 15;
+		target_loss = document.querySelector("#lot").value * -10;
 		//console.log('target loss', target_loss);
 		token_api = document.querySelector("#token").value;
 		
@@ -184,7 +193,7 @@ ws.onmessage = function(msg) {
 		document.querySelector("#terakhirdua").innerText = "" + lastEmpat + "";
 		
 		
-		if ((history_satu === angka_penentu && angka_penentu > 0 && angka_penentu > 7 && document.querySelector("#jalan").innerText === "1")){
+		if ((history_tiga > history_satu && document.querySelector("#jalan").innerText === "1")){
 			if ((counter === 0 && status_trade !== "open" && sikat === 2)){
 			tebak = 2;
 			//counter = 1;
@@ -193,8 +202,8 @@ ws.onmessage = function(msg) {
 		
 		
 		
-		if ((history_satu === angka_penentu && angka_penentu > 0 && angka_penentu > 7 && document.querySelector("#jalan").innerText === "1")){
-			if ((counter === 0 && status_trade !== "open" && ayo === 2 && waktu2 <= 400)){
+		if ((document.querySelector("#jalan").innerText === "1")){
+			if ((counter === 0 && status_trade !== "open" && ayo === 2 && waktu2 <= 4000)){
 			ws.send(JSON.stringify({authorize:'' + token_api + ''}));
 			document.querySelector("#saldo").innerText = "" + saldo + "";
 			counter = 1;
@@ -205,7 +214,7 @@ ws.onmessage = function(msg) {
 			// buyyyyyyyyyyyyyyyy
 			console.log('Lot : ' + lot + '');
 				//ws.send(JSON.stringify({authorize:'GUD9xZiCshPrIpL'}));
-			ws.send(JSON.stringify({"buy":1,"parameters":{"amount":"" + lot + "","app_markup_percentage":"2","barrier":8,"basis":"stake","contract_type":"DIGITUNDER","currency":"USD","duration":1,"duration_unit":"t","symbol":"1HZ25V"},"price":"" + lot + ""}));
+			ws.send(JSON.stringify({"buy":1,"parameters":{"amount":"" + lot + "","app_markup_percentage":"2","basis":"stake","contract_type":eksekusi,"currency":"USD","duration":2,"duration_unit":"t","symbol":"1HZ25V"},"price":"" + lot + ""}));
             //ws.send(JSON.stringify({"buy":1,"parameters":{"amount":"" + lot + "","app_markup_percentage":"2","barrier":8,"basis":"stake","contract_type":"DIGITUNDER","currency":"USD","duration":1,"duration_unit":"t","symbol":"1HZ25V"},"price":"" + lot + ""}));
 				//ws.send(JSON.stringify({authorize:'gqtfnLSQqaNWKKc'}));
 			//document.querySelector("#myBtn1").click();
@@ -247,7 +256,7 @@ ws.onmessage = function(msg) {
 				lot = lot_awal;
 			}
 	        if (loss === 1){
-				lot = lot_trade * 6;
+				lot = lot_trade * 1;
 			}
 			
 			document.querySelector("#profit").innerText = "" + hitungloss + "";
@@ -277,29 +286,40 @@ ws.onmessage = function(msg) {
 		}
 		document.querySelector("#counter").innerText = "" + counter + "";
 		
-		if ((history_tiga > 7 && history_satu < 4 && document.querySelector("#jalan").innerText === "1")){
-			if ((counter === 0 && status_trade !== "open" && orderan === 0 && sikat !== 2)){
+		if ((history_lima > history_empat && history_empat < history_tiga && history_dua < history_tiga && history_dua > history_satu && document.querySelector("#jalan").innerText === "1")){
+			if ((counter === 0 && status_trade !== "open" && orderan === 0)){
 				counter_tick = 1;
 				order_virtual = 1;
+				eksekusi = "PUT";
+				ayo = 2;
+			}
+		}
+		if ((history_lima < history_empat && history_empat > history_tiga && history_dua > history_tiga && history_dua < history_satu && document.querySelector("#jalan").innerText === "1")){
+			if ((counter === 0 && status_trade !== "open" && orderan === 0)){
+				counter_tick = 1;
+				order_virtual = 1;
+				eksekusi = "CALL";
+				ayo = 2;
 			}
 		}
 		
-		if ((counter_tick === 3 && history_satu > 7 && orderan === 0 && order_virtual === 1)){
+		if ((counter_tick === 3 && history_tiga > history_satu && orderan === 0 && order_virtual === 1)){
 			sikat = 2;
-			angka_penentu = history_tiga;
-			hajar = angka_penentu;
+			//angka_penentu = history_tiga;
+			//hajar = angka_penentu;
 			//console.log('digit 2', harga_tiga);
 		}
-		if ((tebak === 2 && sikat === 2 && history_tiga === angka_penentu && history_satu > 7)){
-			ayo = 2;
-		}
 		
-		if ((tebak === 2 && history_tiga === angka_penentu && history_satu < 5)){
+		
+		if ((tebak === 2 && history_tiga < history_satu)){
 			tebak = 0;
 		}
-		if ((ayo === 2 && tebak === 2 && history_tiga === angka_penentu && history_satu < 5)){
-			ayo = 0;
-		}
+		//if ((ayo === 2 && history_lima < history_empat && history_empat < history_tiga && history_tiga < history_dua)){
+			//ayo = 0;
+		//}
+		//if ((ayo === 2 && history_lima > history_empat && history_empat > history_tiga && history_tiga > history_dua)){
+			//ayo = 0;
+		//}
 		
 		
     }
@@ -317,6 +337,7 @@ ws.onmessage = function(msg) {
 
 document.getElementById("myBtn1").addEventListener("click", function MyFunction2(evt){
                //ws.send(JSON.stringify({"proposal_open_contract":1, "contract_id": "" + contract_trade + ""}));
+			   //ws.send(JSON.stringify({forget_all:1}));
 			   token_api = document.querySelector("#token").value;
 			   ws.send(JSON.stringify({authorize:'' + token_api + ''}));
 			   //console.log('socket ', socket.readyState);
