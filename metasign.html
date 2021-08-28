@@ -1,60 +1,7 @@
-<button id="auth">authentication through metamask</button>
-<button id="sign" style="display: none">sign</button>
-<h2 id="status"></h2>
-
-<script>
-const $authButton = document.querySelector('#auth');
-const $statusText = document.querySelector('#status');
-const $signButton = document.querySelector('#sign');
-let provider;
-
-$authButton.addEventListener('click', () => {
-  if (typeof window.ethereum !== 'undefined' || (typeof window.web3 !== 'undefined')) {
-    provider = window['ethereum'] || window.web3.currentProvider;
-    if (provider.isMetaMask) {
-      if (provider.networkVersion == '3') {
-        provider.autoRefreshOnNetworkChange = false;
-        provider.enable()
-        .then(accounts => {
-          $statusText.innerText = `authorized with account: ${accounts[0]}`;
-          $authButton.style.display = 'none';
-          $signButton.style.display = 'block';
-        })
-        .catch(error => {
-          console.error(error);
-        });
-      }
-      else $statusText.innerText = 'need change to main network!';
-    }
-    else $statusText.innerText = 'it\'s not a metamask!';
-  }
-  else $statusText.innerText = 'need enable metamask!';
-});
-
-$signButton.addEventListener('click', () => {
-  web3.personal.sign(web3.sha3('hghg'), provider.selectedAddress,	(error, result) => {
-    if ( ! error) {
-      $statusText.innerText = `signed! result: ${result}`;
-      /* axios
-        .post(`${base}/api/user`, {
-          publicAddress: provider.selectedAddress,
-          signature: result
-        })
-        .then(response => {
-          localStorage.setItem('publicAddress', response.data.publicAddress);
-          localStorage.setItem('userId', response.data.userId);
-          localStorage.setItem('jwtToken', response.data.accessToken);
-          axios.defaults.headers.common = {
-            'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
-          };
-        })
-        .catch(error => {
-          console.error({error});
-        }); */
-    } else {
-      if (error.code == -32603) $statusText.innerText = 'decline sign!';
-      else console.error(error);
-    }
-  });
-});
-</script>
+<html>
+  <body>
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.22/dist/web3.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  </body>
+  
+</html>
