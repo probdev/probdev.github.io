@@ -140,7 +140,7 @@ ws.onmessage = function(msg) {
 		ws.send(JSON.stringify({"ticks_history":"1HZ25V","adjust_start_time":1,"count":"10","end":"latest","start":1,"style":"ticks"}));
 			   
 		lot_awal = document.querySelector("#lot").value;
-		target_profit = document.querySelector("#lot").value * 3;
+		target_profit = document.querySelector("#lot").value * 50;
 		target_loss = document.querySelector("#lot").value * -100;
 		//console.log('target loss', target_loss);
 		token_api = document.querySelector("#token").value;
