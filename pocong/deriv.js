@@ -258,7 +258,7 @@ ws.onmessage = function(msg) {
 				lot = lot_awal;
 			}
 	        if (loss === 1){
-				lot = lot_trade * 1;
+				lot = lot_trade * 6;
 			}
 			
 			document.querySelector("#profit").innerText = "" + hitungloss + "";
