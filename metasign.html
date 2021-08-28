@@ -11,13 +11,16 @@
     
     <script>
       var contract;
-      $(document).ready(function()){
+      $(document).ready(function(){
         web3 = new Web3(web3.currentProvider);
         var address = "";
         var abi = ;
-        
+        contract = new web3.eth.Contract(abi, address);
+        contract.methods.getBalance().call().then(function(bal)
+             $('#balance').html(bal);                                     {
+        })
                         
-      }
+      })
       
     </script>
   </body>
