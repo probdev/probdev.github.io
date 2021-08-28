@@ -45,7 +45,7 @@ var angka_penentu = 0;
 var ws = new WebSocket('wss://ws.binaryws.com/websockets/v3?app_id=19211');
 
 ws.onopen = function(evt) {
-    ws.send(JSON.stringify({ticks:'1HZ10V'}));
+    ws.send(JSON.stringify({ticks:'1HZ25V'}));
 	
 };
 
@@ -137,7 +137,7 @@ ws.onmessage = function(msg) {
 		
     }
 	if (msg_type === "tick") {
-		ws.send(JSON.stringify({"ticks_history":"1HZ10V","adjust_start_time":1,"count":"10","end":"latest","start":1,"style":"ticks"}));
+		ws.send(JSON.stringify({"ticks_history":"1HZ25V","adjust_start_time":1,"count":"10","end":"latest","start":1,"style":"ticks"}));
 			   
 		lot_awal = document.querySelector("#lot").value;
 		target_profit = document.querySelector("#lot").value * 15;
@@ -214,8 +214,8 @@ ws.onmessage = function(msg) {
 			// buyyyyyyyyyyyyyyyy
 			console.log('Lot : ' + lot + '');
 				//ws.send(JSON.stringify({authorize:'GUD9xZiCshPrIpL'}));
-			ws.send(JSON.stringify({"buy":1,"parameters":{"amount":"" + lot + "","app_markup_percentage":"2","barrier":1,"basis":"stake","contract_type":"DIGITOVER","currency":"USD","duration":harga_satu,"duration_unit":"t","symbol":"1HZ10V"},"price":"" + lot + ""}));
-            //ws.send(JSON.stringify({"buy":1,"parameters":{"amount":"" + lot + "","app_markup_percentage":"2","barrier":8,"basis":"stake","contract_type":"DIGITUNDER","currency":"USD","duration":1,"duration_unit":"t","symbol":"1HZ10V"},"price":"" + lot + ""}));
+			ws.send(JSON.stringify({"buy":1,"parameters":{"amount":"" + lot + "","app_markup_percentage":"2","barrier":1,"basis":"stake","contract_type":"DIGITOVER","currency":"USD","duration":harga_satu,"duration_unit":"t","symbol":"1HZ25V"},"price":"" + lot + ""}));
+            //ws.send(JSON.stringify({"buy":1,"parameters":{"amount":"" + lot + "","app_markup_percentage":"2","barrier":8,"basis":"stake","contract_type":"DIGITUNDER","currency":"USD","duration":1,"duration_unit":"t","symbol":"1HZ25V"},"price":"" + lot + ""}));
 				//ws.send(JSON.stringify({authorize:'gqtfnLSQqaNWKKc'}));
 			//document.querySelector("#myBtn1").click();
 			ws.send(JSON.stringify({"proposal_open_contract":1, "contract_id": "" + contract_trade + ""}));
@@ -343,9 +343,9 @@ document.getElementById("myBtn1").addEventListener("click", function MyFunction2
 			   ws.send(JSON.stringify({authorize:'' + token_api + ''}));
 			   //console.log('socket ', socket.readyState);
 			   aut = 1;
-			   //ws.send(JSON.stringify({"ticks_history":"1HZ10V","adjust_start_time":1,"count":"1000","end":"latest","start":1,"style":"ticks"}));
+			   //ws.send(JSON.stringify({"ticks_history":"1HZ25V","adjust_start_time":1,"count":"1000","end":"latest","start":1,"style":"ticks"}));
 			   //document.querySelector("#balance").innerText = "" + saldoasli + "";
-			   //ws.send(JSON.stringify({"buy":1,"parameters":{"amount":"" + lot + "","basis":"stake","contract_type":"PUT","currency":"USD","duration":1,"duration_unit":"t","symbol":"1HZ10V"},"price":"" + lot + ""}));
+			   //ws.send(JSON.stringify({"buy":1,"parameters":{"amount":"" + lot + "","basis":"stake","contract_type":"PUT","currency":"USD","duration":1,"duration_unit":"t","symbol":"1HZ25V"},"price":"" + lot + ""}));
 			   
 });
 document.getElementById("start").addEventListener("click", function MyFunction3(evt){
@@ -358,6 +358,6 @@ document.getElementById("stop").addEventListener("click", function MyFunction4(e
 });
 
 
-//ws.send(JSON.stringify({"buy":1,"parameters":{"amount":"" + lot + "","app_markup_percentage":"2","barrier":"" + digitbarrier + "","basis":"stake","contract_type":"DIGITDIFF","currency":"USD","duration":2,"duration_unit":"t","symbol":"1HZ10V"},"price":"" + lot + ""}));
+//ws.send(JSON.stringify({"buy":1,"parameters":{"amount":"" + lot + "","app_markup_percentage":"2","barrier":"" + digitbarrier + "","basis":"stake","contract_type":"DIGITDIFF","currency":"USD","duration":2,"duration_unit":"t","symbol":"1HZ25V"},"price":"" + lot + ""}));
 
 
