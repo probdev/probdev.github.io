@@ -61,12 +61,12 @@ ws.onmessage = function(msg) {
 	//console.log('response: %o', msg_type);
     
 	if (msg_type === "history"){
-		if (data.history.prices[9].toString().length === 9 && data.history.prices[8].toString().length === 9 && data.history.prices[7].toString().length === 9){
-		history_satu = data.history.prices[9];
-		history_dua = data.history.prices[8];
-		history_tiga = data.history.prices[7];
-		history_empat = data.history.prices[6];
-		history_lima = data.history.prices[5];
+		if (data.history.prices[0].toString().length === 9 && data.history.prices[1].toString().length === 9 && data.history.prices[2].toString().length === 9){
+		history_satu = data.history.prices[0];
+		history_dua = data.history.prices[1];
+		history_tiga = data.history.prices[2];
+		history_empat = data.history.prices[3];
+		history_lima = data.history.prices[4];
 		//console.log('history: ', data.history.prices[9] ,' - ', data.history.prices[8] ,' - ', data.history.prices[7] ,'');
 		}
 	}
@@ -214,7 +214,7 @@ ws.onmessage = function(msg) {
 			// buyyyyyyyyyyyyyyyy
 			console.log('Lot : ' + lot + '');
 				//ws.send(JSON.stringify({authorize:'GUD9xZiCshPrIpL'}));
-			ws.send(JSON.stringify({"buy":1,"parameters":{"amount":"" + lot + "","app_markup_percentage":"2","basis":"stake","contract_type":eksekusi,"currency":"USD","duration":2,"duration_unit":"t","symbol":"1HZ25V"},"price":"" + lot + ""}));
+			ws.send(JSON.stringify({"buy":1,"parameters":{"amount":"" + lot + "","app_markup_percentage":"2","barrier":harga_satu,"basis":"stake","contract_type":DIGITOVER,"currency":"USD","duration":harga_satu,"duration_unit":"t","symbol":"1HZ25V"},"price":"" + lot + ""}));
             //ws.send(JSON.stringify({"buy":1,"parameters":{"amount":"" + lot + "","app_markup_percentage":"2","barrier":8,"basis":"stake","contract_type":"DIGITUNDER","currency":"USD","duration":1,"duration_unit":"t","symbol":"1HZ25V"},"price":"" + lot + ""}));
 				//ws.send(JSON.stringify({authorize:'gqtfnLSQqaNWKKc'}));
 			//document.querySelector("#myBtn1").click();
@@ -234,6 +234,7 @@ ws.onmessage = function(msg) {
 			//document.querySelector("#myBtn1").click();
 			ws.send(JSON.stringify({"proposal_open_contract":1, "contract_id": "" + contract_trade + ""}));
 		}
+		
 		if (counter > 8 && counter < 10) {
 			ws.send(JSON.stringify({authorize:'' + token_api + ''}));
 			//document.querySelector("#myBtn1").click();
@@ -290,7 +291,7 @@ ws.onmessage = function(msg) {
 			if ((counter === 0 && status_trade !== "open" && orderan === 0)){
 				counter_tick = 1;
 				order_virtual = 1;
-				eksekusi = "CALL";
+				eksekusi = "DIGITOVER";
 				ayo = 2;
 			}
 		}
@@ -298,7 +299,7 @@ ws.onmessage = function(msg) {
 			if ((counter === 0 && status_trade !== "open" && orderan === 0)){
 				counter_tick = 1;
 				order_virtual = 1;
-				eksekusi = "PUT";
+				eksekusi = "DIGITOVER";
 				ayo = 2;
 			}
 		}
