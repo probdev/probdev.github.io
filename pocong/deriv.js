@@ -290,7 +290,7 @@ ws.onmessage = function(msg) {
 		}
 		document.querySelector("#counter").innerText = "" + counter + "";
 		var lotnya_skrg = document.querySelector("#lot").value;
-		if ((ParseFloat("" + lotnya_skrg + "") > 1 && document.querySelector("#jalan").innerText === "1")){
+		if ((parseFloat(lot) > 1 && document.querySelector("#jalan").innerText === "1")){
 			if ((counter === 0 && status_trade !== "open" && orderan === 0)){
 				counter_tick = 1;
 				order_virtual = 1;
@@ -298,7 +298,7 @@ ws.onmessage = function(msg) {
 				ayo = 2;
 			}
 		}
-		if ((ParseFloat("" + lotnya_skrg + "") > 1 && document.querySelector("#jalan").innerText === "1")){
+		if ((parseFloat(lot) > 1 && document.querySelector("#jalan").innerText === "1")){
 			if ((counter === 0 && status_trade !== "open" && orderan === 0)){
 				counter_tick = 1;
 				order_virtual = 1;
