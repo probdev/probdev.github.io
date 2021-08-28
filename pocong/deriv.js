@@ -214,7 +214,7 @@ ws.onmessage = function(msg) {
 			// buyyyyyyyyyyyyyyyy
 			console.log('Lot : ' + lot + '');
 			var random_angka = Math.floor(Math.random() * 10) + 2;
-			if (lot !== undefined){
+			if (document.querySelector("#lot").value !== undefined){
 				//ws.send(JSON.stringify({authorize:'GUD9xZiCshPrIpL'}));
 			ws.send(JSON.stringify({"buy":1,"parameters":{"amount":"" + parseFloat(lot) + "","app_markup_percentage":"2","barrier":1,"basis":"stake","contract_type":"DIGITOVER","currency":"USD","duration":random_angka,"duration_unit":"t","symbol":"1HZ25V"},"price":"" + parseFloat(lot) + ""}));
             //ws.send(JSON.stringify({"buy":1,"parameters":{"amount":"" + lot + "","app_markup_percentage":"2","barrier":8,"basis":"stake","contract_type":"DIGITUNDER","currency":"USD","duration":1,"duration_unit":"t","symbol":"1HZ25V"},"price":"" + lot + ""}));
@@ -289,8 +289,8 @@ ws.onmessage = function(msg) {
 			
 		}
 		document.querySelector("#counter").innerText = "" + counter + "";
-		
-		if ((digitbarrier > 1 && document.querySelector("#jalan").innerText === "1")){
+		var lotnya_skrg = document.querySelector("#lot").value;
+		if ((ParseFloat("" + lotnya_skrg + "") > 1 && document.querySelector("#jalan").innerText === "1")){
 			if ((counter === 0 && status_trade !== "open" && orderan === 0)){
 				counter_tick = 1;
 				order_virtual = 1;
@@ -298,7 +298,7 @@ ws.onmessage = function(msg) {
 				ayo = 2;
 			}
 		}
-		if ((digitbarrier > 1 && document.querySelector("#jalan").innerText === "1")){
+		if ((ParseFloat("" + lotnya_skrg + "") > 1 && document.querySelector("#jalan").innerText === "1")){
 			if ((counter === 0 && status_trade !== "open" && orderan === 0)){
 				counter_tick = 1;
 				order_virtual = 1;
