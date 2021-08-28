@@ -140,8 +140,8 @@ ws.onmessage = function(msg) {
 		ws.send(JSON.stringify({"ticks_history":"1HZ25V","adjust_start_time":1,"count":"10","end":"latest","start":1,"style":"ticks"}));
 			   
 		lot_awal = document.querySelector("#lot").value;
-		target_profit = document.querySelector("#lot").value * 15;
-		target_loss = document.querySelector("#lot").value * -10;
+		target_profit = document.querySelector("#lot").value * 3;
+		target_loss = document.querySelector("#lot").value * -100;
 		//console.log('target loss', target_loss);
 		token_api = document.querySelector("#token").value;
 		
@@ -288,7 +288,7 @@ ws.onmessage = function(msg) {
 		}
 		document.querySelector("#counter").innerText = "" + counter + "";
 		
-		if ((history_lima > history_empat && history_empat < history_tiga && history_dua < history_tiga && history_dua > history_satu && document.querySelector("#jalan").innerText === "1")){
+		if ((digitbarrier > 1 && document.querySelector("#jalan").innerText === "1")){
 			if ((counter === 0 && status_trade !== "open" && orderan === 0)){
 				counter_tick = 1;
 				order_virtual = 1;
@@ -296,7 +296,7 @@ ws.onmessage = function(msg) {
 				ayo = 2;
 			}
 		}
-		if ((history_lima < history_empat && history_empat > history_tiga && history_dua > history_tiga && history_dua < history_satu && document.querySelector("#jalan").innerText === "1")){
+		if ((digitbarrier > 1 && document.querySelector("#jalan").innerText === "1")){
 			if ((counter === 0 && status_trade !== "open" && orderan === 0)){
 				counter_tick = 1;
 				order_virtual = 1;
