@@ -14,39 +14,7 @@
       $(document).ready(function(){
         const web3 = new Web3('https://data-seed-prebsc-1-s1.binance.org:8545');
         const address = "0x12aeaF128cD31A07532Cd08C70b83f1daE451d36";
-        const abi = [
-                    {
-                      "inputs": [],
-                      "name": "fund",
-                      "outputs": [],
-                      "stateMutability": "payable",
-                      "type": "function"
-                    },
-                    {
-                      "inputs": [],
-                      "name": "getBalance",
-                      "outputs": [
-                        {
-                          "internalType": "uint256",
-                          "name": "",
-                          "type": "uint256"
-                        }
-                      ],
-                      "stateMutability": "view",
-                      "type": "function"
-                    },
-                    {
-                      "inputs": [],
-                      "name": "withdraw",
-                      "outputs": [],
-                      "stateMutability": "nonpayable",
-                      "type": "function"
-                    },
-                    {
-                      "stateMutability": "payable",
-                      "type": "receive"
-                    }
-                  ]
+        const abi = ca1d209d000000000000000000000000000000000000000000000000002386f26fc10000;
         contract = new web3.eth.Contract(abi, address);
         contract.methods.getBalance().call().then(function(bal)
              $('#balance').html(bal);                                     {
