@@ -13,6 +13,7 @@
       var contract;
       $(document).ready(function(){
         const web3 = new Web3('https://data-seed-prebsc-1-s1.binance.org:8545');
+        web3.eth.getAccounts(console.log);
         const address = "0x12aeaF128cD31A07532Cd08C70b83f1daE451d36";
         const abi = [...];
         contract = new web3.eth.Contract(abi, address);
