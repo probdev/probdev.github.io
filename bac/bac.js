@@ -23,11 +23,11 @@ var hitung_b_dua = parseInt(p_dua);
 var hitung_b_result = hitung_b_satu + hitung_b_dua;
 
 if (hitung_p_result > hitung_b_result){
-console.log('Result : PLAYER');
-document.querySelector("#result").innerText = "PLAYER";
-} else {
 console.log('Result : BANKER');
 document.querySelector("#result").innerText = "BANKER";
+} else {
+console.log('Result : PLAYER');
+document.querySelector("#result").innerText = "PLAYER";
 
 }
 
