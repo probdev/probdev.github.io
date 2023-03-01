@@ -16,11 +16,11 @@ if (parseInt(b_tiga) > 1 || parseInt(p_tiga) > 1){
 if (parseInt(p_dua) > 1 && parseInt(b_satu) > 1){
 var hitung_p_satu = parseInt(b_dua) + (parseInt(p_dua) + parseInt(p_tiga));
 var hitung_p_dua = parseInt(b_dua);
-var hitung_p_result = hitung_p_satu + hitung_p_dua;
+var hitung_p_result = parseInt(hitung_p_satu) + parseInt(hitung_p_dua);
 console.log('Result : ', hitung_p_result);
 var hitung_b_satu = parseInt(p_dua) + (parseInt(b_dua) + parseInt(b_tiga));
 var hitung_b_dua = parseInt(p_dua);
-var hitung_b_result = hitung_b_satu + hitung_b_dua;
+var hitung_b_result = parseInt(hitung_b_satu) + parseInt(hitung_b_dua);
 
 if (hitung_p_result > hitung_b_result){
 console.log('Result : BANKER');
