@@ -6,8 +6,8 @@ var p_dua = document.querySelector("#p2").value;
 var p_tiga = document.querySelector("#p3").value;
 
 var b_satu = document.querySelector("#b1").value;
-var b_dua = document.querySelector("#b1").value;
-var b_tiga = document.querySelector("#b1").value;
+var b_dua = document.querySelector("#b2").value;
+var b_tiga = document.querySelector("#b3").value;
 
 
 
