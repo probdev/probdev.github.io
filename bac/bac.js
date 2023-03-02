@@ -13,7 +13,7 @@ var b_tiga = document.querySelector("#b3").value;
 
 if (parseInt(b_tiga) > 1 || parseInt(p_tiga) > 1){
 
-if (parseInt(p_dua) > 1 && parseInt(b_satu) > 1){
+if (parseInt(b_dua) > 2 || parseInt(p_satu) > 2){
 var hitung_p_satu = parseInt(b_dua) + (parseInt(p_dua) + parseInt(p_tiga));
 var hitung_p_dua = parseInt(b_dua);
 var hitung_p_result = parseInt(hitung_p_satu) + parseInt(hitung_p_dua);
